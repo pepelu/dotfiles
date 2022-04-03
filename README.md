@@ -5,6 +5,7 @@ My own set of configuration files.
 ## Details
 
 - Compositor: [Sway](https://swaywm.org/).
+- Document viewer: [zathura](https://pwmt.org/projects/zathura/).
 - Editor: [vim](https://www.vim.org/).
     - [gruvbox-material](https://github.com/sainnhe/gruvbox-material).
     - [lightline](https://github.com/itchyny/lightline.vim).
