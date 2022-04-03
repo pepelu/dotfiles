@@ -1,0 +1,9 @@
+[submodule "vim/.vim/pack/colors/opt/gruvbox-material"]
+	path = vim/.vim/pack/colors/opt/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material.git
+[submodule "vim/.vim/pack/plugins/start/lightline"]
+	path = vim/.vim/pack/plugins/start/lightline
+	url = https://github.com/itchyny/lightline.vim.git
+[submodule "vim/.vim/pack/wayland/start/vim-wayland-clipboard"]
+	path = vim/.vim/pack/wayland/start/vim-wayland-clipboard
+	url = https://github.com/jasonccox/vim-wayland-clipboard.git

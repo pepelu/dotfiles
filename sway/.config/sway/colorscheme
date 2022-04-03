@@ -1,0 +1,12 @@
+## Gruvbox Material Dark
+# https://gist.github.com/Cardoso1994/80641d652a4adcf6c8f718ebc3770ab9
+
+set $bg       #282828
+set $fg       #d4be98
+set $red      #ea6962
+set $orange   #e78a4e
+set $green    #a9b665
+set $blue     #7daea3
+set $purple   #d3869b
+set $aqua     #89b482
+set $darkgray #282828

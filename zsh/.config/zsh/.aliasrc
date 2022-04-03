@@ -1,0 +1,26 @@
+# Aliases
+
+# Add color and order to ls
+alias ls='ls --color=auto'
+alias ll='ls -lAh --color=auto --group-directories-first'
+
+# Add colors to life
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+
+# Prompt if overwrites a file
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Create parent directories
+alias mkdir='mkdir -p'
+
+# Passing aliases to sudo
+alias sudo='sudo '
+
+# Mount NTFS drives with reasonable permissions
+# ...which solves the issue of wonky ls -l colors
+# Set owner to uid=1000 (id of the user, for personal systems):
+# drwx------ for directories
+# -rw------- for files
+alias mount_hdd='mount -o uid=1000,dmask=0077,fmask=0177'
