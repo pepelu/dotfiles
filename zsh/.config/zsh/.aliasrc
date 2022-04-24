@@ -2,7 +2,8 @@
 
 # Add color and order to ls
 alias ls='ls --color=auto'
-alias ll='ls -lAh --color=auto --group-directories-first'
+alias ll='ls -lh --color=auto --group-directories-first'
+alias la='ls -lAh --color=auto --group-directories-first'
 
 # Add colors to life
 alias grep='grep --color=auto'
