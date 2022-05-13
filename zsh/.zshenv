@@ -1,6 +1,9 @@
 # Store zsh config files under .config
 export ZDOTDIR=$HOME/.config/zsh
 
+# Centralized notes directory
+export NOTESDIR=~/zettelkasten
+
 # Default programs
 export EDITOR=vim
 export VISUAL=vim
