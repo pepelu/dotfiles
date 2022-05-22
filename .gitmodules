@@ -7,3 +7,6 @@
 [submodule "vim/.vim/pack/wayland/start/vim-wayland-clipboard"]
 	path = vim/.vim/pack/wayland/start/vim-wayland-clipboard
 	url = https://github.com/jasonccox/vim-wayland-clipboard.git
+[submodule "/home/ws/dotfiles/vim/.vim/pack/plugins/start/unimpaired.vim"]
+	path = /home/ws/dotfiles/vim/.vim/pack/plugins/start/unimpaired.vim
+	url = https://github.com/tpope/vim-unimpaired.git

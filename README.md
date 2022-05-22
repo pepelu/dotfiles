@@ -9,6 +9,7 @@ My own set of configuration files.
 - Editor: [vim](https://www.vim.org/).
     - [gruvbox-material](https://github.com/sainnhe/gruvbox-material).
     - [lightline](https://github.com/itchyny/lightline.vim).
+    - [vim-unimpaired](https://github.com/tpope/vim-unimpaired).
     - [vim-wayland-clipboard](https://github.com/jasonccox/vim-wayland-clipboard).
 - Shell: [Zsh](https://www.zsh.org/).
 - Terminal: [foot](https://codeberg.org/dnkl/foot).
