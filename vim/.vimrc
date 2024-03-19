@@ -6,6 +6,7 @@ packadd! gruvbox-material   " colorscheme
 " Colors
 syntax enable
 
+set termguicolors
 set background=dark
 let g:gruvbox_material_background = 'soft'
 let g:gruvbox_material_better_performance = 1
