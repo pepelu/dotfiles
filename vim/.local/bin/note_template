@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# New note template
-# vim: nomodeline
-
-uid=$(date +%Y%m%d%H%M)
-printf "# $uid\n\n@\n\n\n/* vim: set tw=79 fo+=t fo-=l ft=markdown: */"
