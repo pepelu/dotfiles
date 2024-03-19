@@ -1,7 +1,18 @@
+" Plugin manager
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Packages
-packadd! gruvbox-material   " colorscheme
-" lightline.vim             " statusline
-" vim-wayland-clipboard     " wayland clipboard support
+call plug#begin()
+Plug 'sainnhe/gruvbox-material'
+Plug 'itchyny/lightline.vim'
+Plug 'jasonccox/vim-wayland-clipboard'
+Plug 'tpope/vim-unimpaired'
+call plug#end()
 
 " Colors
 syntax enable

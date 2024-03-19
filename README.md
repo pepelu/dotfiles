@@ -16,7 +16,7 @@ My own set of configuration files.
 
 ## Install
 
-The vim plugins are tracked as [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). You can clone the repository and automatically initialize the submodules passing `--recurse-submodules` to `git clone`.
+Vim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug). The plugin manager will be automatically installed the first time you run vim after deploying the configuration files. The plugin manager will then install the plugins.
 
 You can install the configuration files for each application with [GNU Stow](https://www.gnu.org/software/stow/):
 
