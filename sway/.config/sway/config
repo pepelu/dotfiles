@@ -72,10 +72,13 @@ exec swayidle -w \
         xkb_options "grp:win_space_toggle,ctrl:nocaps"
     }
 
-# Volume control
+# Multimedia keys
 bindsym XF86AudioMute exec amixer -q sset Master toggle
 bindsym XF86AudioLowerVolume exec amixer -q sset Master 3%-
 bindsym XF86AudioRaiseVolume exec amixer -q sset Master 3%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 ### Key bindings
 
