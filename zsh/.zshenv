@@ -7,7 +7,7 @@ export NOTESDIR=~/zettelkasten
 # Default programs
 export EDITOR=vim
 export VISUAL=vim
-export BROWSER=librewolf
+export BROWSER=firefox
 
 # Code syntax coloring in less (requires source-highlight)
 export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
