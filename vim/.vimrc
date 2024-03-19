@@ -61,32 +61,3 @@ autocmd FileType gitcommit setlocal spell
 " Enable dictionary auto-completion with <Ctrl-N>
 autocmd FileType markdown  setlocal complete+=kspell
 autocmd FileType gitcommit setlocal complete+=kspell
-
-" Note-taking settings
-
-" Go to notes home and set the working directory to be able to follow links
-command! Nindex cd $NOTESDIR |
-              \ edit $NOTESDIR/home.md
-nnoremap <leader>ni :Nindex<CR>
-
-" Create new note and manually apply modeline
-command! Nnote cd $NOTESDIR | edit `date +\%Y\%m\%d\%H\%M` |
-             \ set filetype=markdown |
-             \ set textwidth=79 formatoptions+=t formatoptions-=l |
-             \ .!note_template
-nnoremap <leader>nn :Nnote<CR>
-
-" Find in notes.
-" Instead of external grep, you can use the internal vim[grep]
-" and you won't have to juggle as shown below, but it's slower.
-"
-" silent prevents the Press ENTER or type command to continue
-" redraw! forces a redraw because silent messes up the window
-" grep! doesn't jump to the first match, doing it with cfirst
-" instead, prints the line (1 of X: match) that silent omits
-command! -nargs=1 Ngrep execute 'silent grep! <args> $NOTESDIR/*' |
-                        \ redraw! | cfirst
-nnoremap <leader>nf :Ngrep 
-" Show matches window
-command! Vlist botright vertical copen | vertical resize 80
-nnoremap <leader>nv :Vlist<CR>
