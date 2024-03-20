@@ -20,7 +20,7 @@ Vim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug). T
 
 You can install the configuration files for each application with [GNU Stow](https://www.gnu.org/software/stow/):
 
-1. Clone the repository: `git clone --recurse-submodules https://github.com/pepelu/dotfiles.git ~/dotfiles`.
+1. Clone the repository: `git clone https://github.com/pepelu/dotfiles.git ~/dotfiles`.
 1. Enter the directory `cd dotfiles`.
 1. Deploy the configuration files for the application you want, e.g. for zsh: `stow zsh`.
 
