@@ -12,6 +12,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'tpope/vim-unimpaired'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 " Colors
@@ -47,6 +48,7 @@ set cursorline     " highlight current line
 set showmatch      " highlight matching [{()}]
 set wildmenu       " visual autocomplete for command menu
 set lazyredraw     " avoid redraws in the middle of macros
+set updatetime=100 " ms to show changed lines with gitgutter
 
 " Search
 set incsearch      " search as you type

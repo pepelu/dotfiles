@@ -11,6 +11,7 @@ My own set of configuration files.
     - [lightline](https://github.com/itchyny/lightline.vim).
     - [vim-unimpaired](https://github.com/tpope/vim-unimpaired).
     - [vim-wayland-clipboard](https://github.com/jasonccox/vim-wayland-clipboard).
+    - [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 - Shell: [Zsh](https://www.zsh.org/).
 - Terminal: [foot](https://codeberg.org/dnkl/foot).
 
