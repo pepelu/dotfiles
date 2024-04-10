@@ -6,6 +6,7 @@ unsetopt beep
 # Completion
 zstyle ':completion:*' completer _complete _ignored _correct _approximate
 zstyle ':completion:*' max-errors 3 not-numeric
+fpath+=$ZDOTDIR/completions
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots)
