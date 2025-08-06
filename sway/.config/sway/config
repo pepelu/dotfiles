@@ -18,15 +18,7 @@ set $menu bemenu-run \
 | xargs swaymsg exec --
 
 # Color configuration
-include colorscheme
-
-# Gruvbox Theme         Border      BG          Text    Indicator   Child Border
-client.focused          $orange     $orange     $bg     $orange     $orange
-client.focused_inactive $aqua       $aqua       $bg     $aqua       $aqua
-client.unfocused        $bg         $bg         $bg     $bg         $bg
-client.urgent           $red        $red        $bg     $red        $red
-client.placeholder      $bg         $bg         $bg     $bg         $bg
-client.background       $bg
+include themes/base16-gruvbox-material-dark-medium.config
 
 # Visual configuration
 default_border pixel
