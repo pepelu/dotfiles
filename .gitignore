@@ -2,3 +2,9 @@
 **/zsh/completions/
 vim/.vim/
 .netrwhist
+
+# Temp and backup files
+*.bak
+*.tmp
+*.swp
+*.swo
