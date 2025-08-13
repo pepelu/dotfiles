@@ -11,14 +11,17 @@ set $right l
 # Terminal emulator
 set $term foot
 
-# Application launcher
-# colors from gruvbox
-set $menu bemenu-run \
---fn "Terminus 14" -p "" --nb "#282828" --nf "#89b482" --hf "#282828" --hb "#e78a4e" --fb "#282828" \
-| xargs swaymsg exec --
+### Application launcher
+# pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+set $rofi_cmd rofi \
+        -terminal '$term'
+# Shows a combined list of the applications with desktop files and
+# executables from PATH.
+set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 # Color configuration
-include themes/base16-gruvbox-material-dark-medium.config
+include themes/base16-tomorrow-night-eighties.config
 
 # Visual configuration
 default_border pixel
@@ -26,36 +29,22 @@ default_floating_border pixel
 
 ### Output configuration
 # Wallpaper
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/default.png fill
 
+# Output configuration is managed using kanshi
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output DP-2
 
 # Disable internal monitor when the lid is closed
-set $internal_monitor LVDS-1
+set $internal_monitor eDP-1
 bindswitch --reload --locked lid:on  output $internal_monitor disable
 bindswitch --reload --locked lid:off output $internal_monitor enable
 
 # Toggle internal monitor
-bindsym $mod+Shift+i output LVDS-1 toggle
+# Extra flexibility
+bindsym $mod+Shift+i output eDP-1 toggle
 
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-# Turn off display after 10 minutes
-exec swayidle -w \
-        timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
-
+# Idle settings are configured in /usr/share/sway/config.d/90-swayidle.conf
+# Multimedia keys conf in /usr/share/sway/config.d/60-bindings-media.conf
 
 ### Input configuration
 # Read `man 5 sway-input` for more information
@@ -64,18 +53,8 @@ exec swayidle -w \
         xkb_options "grp:win_space_toggle,ctrl:nocaps"
     }
 
-# Multimedia keys
-bindsym XF86AudioMute exec amixer -q sset Master toggle
-bindsym XF86AudioLowerVolume exec amixer -q sset Master 3%-
-bindsym XF86AudioRaiseVolume exec amixer -q sset Master 3%+
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
 ### Key bindings
-
 # Basics:
-
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -195,31 +174,27 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-# Status Bar:
+# Status Bar /usr/share/sway/config.d/90-bar.conf
 
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
-    wrap_scroll yes
-
-    font Terminus 12
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %H:%M'; do sleep 1; done
-    colors {
-            # bar background color
-            background $bg
-            # text color used for blocks that do not have a color specified.
-            statusline $fg
-
-            # workspaces section
-            #                    border     backgr.     text
-            focused_workspace    $orange    $orange     $bg
-            inactive_workspace   $bg        $aqua       $bg
-            active_workspace     $bg        $blue       $bg
-            urgent_workspace     $red       $red        $fg
-        }
-}
-
-include /etc/sway/config.d/*
+# Include configs from 3 locations:
+#  - /usr/share/sway/config.d
+#  - /etc/sway/config.d
+#  - $XDG_CONFIG_HOME/sway/config.d ($HOME/.config/sway/config.d)
+#
+# If multiple directories contain the files with the same name, the later
+# directory takes precedence; `$XDG_CONFIG_HOME/sway/config.d/20-swayidle.conf`
+# will always be loaded instead of `/usr/share/sway/config.d/20-swayidle.conf`
+# or `/etc/sway/config.d/20-swayidle.conf`
+#
+# This mechanism permits overriding our default configuration per-system
+# (/etc) or per-user ($XDG_CONFIG_HOME) basis. Just create the file you
+# want to modify/override in the higher-level directory.
+#
+# For example, to disable the default bar from Fedora configs, you'll need to
+#     $ echo -n > "$HOME/.config/sway/config.d/90-bar.conf"
+#
+# Note the quoting, the $() and the arguments quoting. All the parts are equally
+# important to make the magic work. And if you want to learn the secret behind
+# the trick, it's all in the `wordexp(3)`.
+#
+include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
