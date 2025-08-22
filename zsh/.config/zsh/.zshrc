@@ -26,7 +26,8 @@ SAVEHIST=20000
 # Uses the git prompt that comes with git
 # Location varies depending on the distro
 setopt PROMPT_SUBST
-source /usr/share/git/completion/git-prompt.sh
+#source /usr/share/git/completion/git-prompt.sh
+source /usr/share/git-core/contrib/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=y
 GIT_PS1_SHOWSTASHSTATE=y
 GIT_PS1_SHOWUNTRACKEDFILES=y
@@ -41,7 +42,9 @@ if [[ -r ~/.config/zsh/.aliasrc ]]; then
 fi
 
 # Fish-like autosuggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlighting (always last)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
