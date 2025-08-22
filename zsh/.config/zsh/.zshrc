@@ -4,31 +4,33 @@ setopt autocd
 unsetopt beep
 
 # Completion
+setopt globdots
 zstyle ':completion:*' completer _complete _ignored _correct _approximate
-zstyle ':completion:*' max-errors 3 not-numeric
 fpath+=$ZDOTDIR/completions
 autoload -Uz compinit
 compinit
-_comp_options+=(globdots)
-# Suggest packages when a command is not found
-source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# Correction
+setopt correct
 
 # History
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
 HISTFILE=~/.cache/histfile
 HISTSIZE=100000
-SAVEHIST=$HISTSIZE
+SAVEHIST=20000
 
 # Prompt (with git)
+# Uses the git prompt that comes with git
+# Location varies depending on the distro
 setopt PROMPT_SUBST
 source /usr/share/git/completion/git-prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=y
 GIT_PS1_SHOWSTASHSTATE=y
 GIT_PS1_SHOWUNTRACKEDFILES=y
 PS1='%F{red}[ %F{yellow}%n %F{green}@ %F{cyan}%3~ %F{blue}]$(__git_ps1 " (%s)")%F{magenta} %(!.#.$) %f'
-
-# Enable ls colors in foot terminal
-# Doesn't really work though
-eval $(env TERM=xterm256-color dircolors)
 
 # History search with Ctrl-R
 bindkey "^R" history-incremental-search-backward
