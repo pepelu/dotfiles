@@ -6,8 +6,8 @@ export EDITOR=vim
 export VISUAL=vim
 export BROWSER=firefox
 
-# Code syntax coloring in less (requires source-highlight)
-export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
+# Support color escape codes in less
+# Useful for things like jq
 export LESS='-R '
 
 # Add ~/.local/bin to path per file-hierarchy(7)
