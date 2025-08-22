@@ -53,6 +53,9 @@ bindsym $mod+Shift+i output eDP-1 toggle
         xkb_options "grp:win_space_toggle,ctrl:nocaps"
     }
 
+# Notification center
+exec_always swaync
+
 ### Key bindings
 # Basics:
     # Start a terminal
@@ -76,6 +79,9 @@ bindsym $mod+Shift+i output eDP-1 toggle
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Toggle SwayNotificationCenter
+    bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Moving around:
 
