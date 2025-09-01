@@ -53,6 +53,10 @@ bindsym $mod+Shift+i output eDP-1 toggle
         xkb_options "grp:win_space_toggle,ctrl:nocaps"
     }
 
+input type:touchpad {
+    tap enabled
+}
+
 # Notification center
 exec_always swaync
 
