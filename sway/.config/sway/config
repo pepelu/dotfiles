@@ -55,6 +55,7 @@ bindsym $mod+Shift+i output eDP-1 toggle
 
 input type:touchpad {
     tap enabled
+    middle_emulation enabled
 }
 
 # Notification center
