@@ -12,7 +12,7 @@
         "sway/scratchpad"
     ],
     "modules-center": [
-        "sway/window"
+        "clock",
     ],
     "modules-right": [
         "idle_inhibitor",
@@ -25,7 +25,6 @@
         "backlight",
         "sway/language",
         "battery",
-        "clock",
         "tray",
 	"custom/swaync"
     ],
@@ -74,6 +73,11 @@
     },
 
 // Center
+
+  "clock": {
+    "format": "{:%H:%M | %Y-%m-%d}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
 
 // Right
     "idle_inhibitor": {
@@ -189,11 +193,6 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
     "tray": {
         // "icon-size": 21,
         "spacing": 10
