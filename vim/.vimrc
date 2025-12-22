@@ -12,6 +12,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'itchyny/lightline.vim'
 Plug 'jasonccox/vim-wayland-clipboard'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 call plug#end()
 
