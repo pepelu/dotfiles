@@ -52,9 +52,6 @@ vim.opt.hlsearch = true -- clear highlights after search
 ---------------------
 local map = vim.keymap.set
 
--- Clear search highlights with <Esc> in normal mode
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
 -- Folding
 map("n", "<leader><leader>", "za", { desc = "Toggle fold under cursor" })
 
