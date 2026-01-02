@@ -6,18 +6,15 @@ My own set of configuration files.
 
 - Compositor: [Sway](https://swaywm.org/).
 - Document viewer: [zathura](https://pwmt.org/projects/zathura/).
-- Editor: [vim](https://www.vim.org/).
-    - [gruvbox-material](https://github.com/sainnhe/gruvbox-material).
-    - [lightline](https://github.com/itchyny/lightline.vim).
-    - [vim-unimpaired](https://github.com/tpope/vim-unimpaired).
-    - [vim-wayland-clipboard](https://github.com/jasonccox/vim-wayland-clipboard).
-    - [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+- Editor: [vim](https://www.vim.org/) and [Neovim](https://neovim.io/).
 - Shell: [Zsh](https://www.zsh.org/).
 - Terminal: [foot](https://codeberg.org/dnkl/foot).
 
 ## Install
 
 Vim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug). The plugin manager will be automatically installed the first time you run vim after deploying the configuration files. The plugin manager will then install the plugins.
+
+Neovim plugins are manager with [lazy.nvim](https://github.com/folke/lazy.nvim). Same as with Vim, the plugin manager will be automatically installed on first run.
 
 You can install the configuration files for each application with [GNU Stow](https://www.gnu.org/software/stow/):
 
