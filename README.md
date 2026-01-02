@@ -14,7 +14,7 @@ My own set of configuration files.
 
 Vim plugins are managed with [vim-plug](https://github.com/junegunn/vim-plug). The plugin manager will be automatically installed the first time you run vim after deploying the configuration files. The plugin manager will then install the plugins.
 
-Neovim plugins are manager with [lazy.nvim](https://github.com/folke/lazy.nvim). Same as with Vim, the plugin manager will be automatically installed on first run.
+Neovim plugins are managed with [lazy.nvim](https://github.com/folke/lazy.nvim). Same as with Vim, the plugin manager will be automatically installed on first run.
 
 You can install the configuration files for each application with [GNU Stow](https://www.gnu.org/software/stow/):
 
