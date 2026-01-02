@@ -1,7 +1,7 @@
 vim9script
 
 # Plugin manager
-# Install vim-plug if not found
+# Bootstrap vim-plug
 var plug_path = expand('~/.vim/autoload/plug.vim')
 if empty(glob(plug_path))
     echo "Installing vim-plug."
@@ -11,41 +11,25 @@ endif
 
 # Packages
 plug#begin()
-    legacy Plug 'sainnhe/gruvbox-material'
-    legacy Plug 'itchyny/lightline.vim'
-    legacy Plug 'jasonccox/vim-wayland-clipboard'
-    legacy Plug 'tpope/vim-unimpaired'
-    legacy Plug 'tpope/vim-surround'
-    legacy Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-sensible'
+    Plug 'sainnhe/gruvbox-material'
+    Plug 'itchyny/lightline.vim'
+    Plug 'tpope/vim-surround'
+    Plug 'airblade/vim-gitgutter'
 plug#end()
 
-# Colors
-syntax enable
 
-set termguicolors
-set background=dark
-g:gruvbox_material_background = 'soft'
-g:gruvbox_material_better_performance = 1
-colorscheme gruvbox-material
+#######################
+# Options and globals #
+#######################
 
-# foot doesn't support undercurl
-# but vim doesn't fallback to underline without this
-# Useful for spellchecking
-&t_Cs = "\e[4:3m"
-&t_Ce = "\e[4:0m"
+g:mapleader = " "
+g:maplocalleader = " "
 
-# Spaces & Tabs
-set tabstop=4      # number of visual spaces per tab
-set softtabstop=4  # number of spaces in tab when editing
-set expandtab      # tabs are spaces
-set autoindent     # match previous line indent
-set smartindent    # the above, but trying to be smart about it
+# Use primary selection for yanking
+set clipboard=unnamed
 
-# Filetypes
-filetype indent on # indent according to the filetype
-filetype plugin on # load filetype-specific settings
-
-# UI config
+# UI
 set number         # show line numbers
 set relativenumber # show relative line numbers
 set cursorline     # highlight current line
@@ -54,16 +38,40 @@ set wildmenu       # visual autocomplete for command menu
 set lazyredraw     # avoid redraws in the middle of macros
 set updatetime=100 # ms to show changed lines with gitgutter
 
+# Spaces & Tabs
+set tabstop=4      # number of visual spaces per tab
+set softtabstop=4  # number of spaces in tab when editing
+set shiftwidth=4   # auto indent is 4 spaces
+set expandtab      # tabs are spaces
+set autoindent     # match previous line indent
+set smartindent    # the above, but trying to be smart about it
+
+# Filetypes
+filetype indent on # indent according to the filetype
+filetype plugin on # load filetype-specific settings
+
 # Search
 set incsearch      # search as you type
 set hlsearch       # highlight matches
-# turn off search highlight (leader is \)
-nnoremap <leader><space> :nohlsearch<CR>
+
+# Theme
+syntax enable
+set termguicolors
+set background=dark
+g:gruvbox_material_background = 'soft'
+g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
 
 # Status line
 set laststatus=2
 set noshowmode
 g:lightline = { 'colorscheme': 'gruvbox_material' }
+
+# foot doesn't support undercurl
+# but vim doesn't fallback to underline without this
+# Useful for spellchecking
+&t_Cs = "\e[4:3m"
+&t_Ce = "\e[4:0m"
 
 # Movement
 # Default movement uses visual lines, multiline jumps use actual lines
@@ -75,6 +83,3 @@ noremap <expr> k (v:count == 0 ? 'gk' : 'k')
 # Spell-check Markdown files and Git commit messages
 autocmd FileType markdown  setlocal spell
 autocmd FileType gitcommit setlocal spell
-# Enable dictionary auto-completion with <Ctrl-N>
-autocmd FileType markdown  setlocal complete+=kspell
-autocmd FileType gitcommit setlocal complete+=kspell
