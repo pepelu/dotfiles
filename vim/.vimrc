@@ -33,6 +33,7 @@ set clipboard=unnamed
 set number         # show line numbers
 set relativenumber # show relative line numbers
 set cursorline     # highlight current line
+set signcolumn=yes
 set showmatch      # highlight matching [{()}]
 set wildmenu       # visual autocomplete for command menu
 set lazyredraw     # avoid redraws in the middle of macros
