@@ -136,12 +136,29 @@ require("lazy").setup({
 			"saghen/blink.cmp",
 			version = "*",
 			opts = {
-				keymap = { preset = "enter" },
+				keymap = { preset = "super-tab" },
 				sources = {
 					default = { "lsp", "path", "snippets", "buffer" },
 				},
 			},
 			opts_extend = { "sources.default" },
+		},
+		-- LSP declarative config
+		{
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			dependencies = { "mason-org/mason.nvim" },
+			opts = {
+				ensure_installed = {
+					-- LSPs
+					"ruff",
+					"ty",
+					"tombi",
+
+					-- Formatters
+					"stylua",
+					"yamlfmt",
+				},
+			},
 		},
 		{
 			{
@@ -150,9 +167,6 @@ require("lazy").setup({
 					{ "mason-org/mason.nvim", opts = {} },
 					"neovim/nvim-lspconfig",
 					"saghen/blink.cmp",
-				},
-				opts = {
-					ensure_installed = { "ruff", "ty", "stylua" },
 				},
 				config = function(_, opts)
 					require("mason-lspconfig").setup(opts)
@@ -192,6 +206,8 @@ require("lazy").setup({
 					lua = { "stylua" },
 					python = { "ruff_organize_imports", "ruff_format" },
 					json = { "jq" },
+					yaml = { "yamlfmt" },
+					toml = { "tombi" },
 				},
 				format_on_save = {
 					timeout_ms = 500,
