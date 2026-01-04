@@ -76,20 +76,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = augroup,
-	pattern = "*.py",
-	callback = function()
-		-- Organize imports
-		vim.lsp.buf.code_action({
-			context = { only = { "source.organizeImports" } },
-			apply = true,
-		})
-		-- Format the buffer
-		vim.lsp.buf.format({ async = false })
-	end,
-})
-
 -------------
 -- Plugins --
 -------------
@@ -145,68 +131,73 @@ require("lazy").setup({
 				})
 			end,
 		},
-		-- LSP
-		{
-			"neovim/nvim-lspconfig",
-			dependencies = { "hrsh7th/nvim-cmp" },
-			config = function()
-				local capabilities = require("cmp_nvim_lsp").default_capabilities()
-				vim.lsp.config("ty", {
-					cmd = { "ty", "server" },
-					capabilities = capabilities,
-				})
-				vim.lsp.config("ruff", {
-					cmd = { "ruff", "server" },
-					capabilities = capabilities,
-				})
-
-				vim.lsp.enable("ty")
-				vim.lsp.enable("ruff")
-
-				vim.diagnostic.config({
-					virtual_text = true,
-					severity_sort = true,
-					float = { border = "rounded", source = "always" },
-				})
-
-				vim.api.nvim_create_autocmd("LspAttach", {
-					callback = function(args)
-						map("n", "<leader>rn", vim.lsp.buf.rename, { buffer = args.buf, desc = "[R]e[n]ame variable" })
-						map("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = args.buf, desc = "[C]ode [A]ction" })
-						map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show [E]rror message" })
-					end,
-				})
-			end,
-		},
 		-- completion
 		{
-			"hrsh7th/nvim-cmp",
-			dependencies = {
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-buffer",
-				"hrsh7th/cmp-path",
+			"saghen/blink.cmp",
+			version = "*",
+			opts = {
+				keymap = { preset = "enter" },
+				sources = {
+					default = { "lsp", "path", "snippets", "buffer" },
+				},
 			},
-			config = function()
-				local cmp = require("cmp")
+			opts_extend = { "sources.default" },
+		},
+		{
+			{
+				"mason-org/mason-lspconfig.nvim",
+				dependencies = {
+					{ "mason-org/mason.nvim", opts = {} },
+					"neovim/nvim-lspconfig",
+					"saghen/blink.cmp",
+				},
+				opts = {
+					ensure_installed = { "ruff", "ty", "stylua" },
+				},
+				config = function(_, opts)
+					require("mason-lspconfig").setup(opts)
 
-				cmp.setup({
-					mapping = cmp.mapping.preset.insert({
-						["<C-b>"] = cmp.mapping.scroll_docs(-4),
-						["<C-f>"] = cmp.mapping.scroll_docs(4),
-						["<C-Space>"] = cmp.mapping.complete(),
-						["<C-e>"] = cmp.mapping.abort(),
-						["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept with Enter
-						["<Tab>"] = cmp.mapping.select_next_item(), -- Cycle with Tab
-						["<S-Tab>"] = cmp.mapping.select_prev_item(), -- Cycle back with Shift-Tab
-					}),
-					sources = cmp.config.sources({
-						{ name = "nvim_lsp" },
-					}, {
-						{ name = "buffer", keyword_length = 3 },
-						{ name = "path" },
-					}),
-				})
-			end,
+					vim.diagnostic.config({
+						virtual_text = true,
+						severity_sort = true,
+						float = { border = "rounded", source = "always" },
+					})
+
+					vim.api.nvim_create_autocmd("LspAttach", {
+						callback = function(args)
+							map(
+								"n",
+								"<leader>rn",
+								vim.lsp.buf.rename,
+								{ buffer = args.buf, desc = "[R]e[n]ame variable" }
+							)
+							map(
+								"n",
+								"<leader>ca",
+								vim.lsp.buf.code_action,
+								{ buffer = args.buf, desc = "[C]ode [A]ction" }
+							)
+							map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show [E]rror message" })
+						end,
+					})
+				end,
+			},
+		},
+		-- formatting
+		{
+			"stevearc/conform.nvim",
+			event = { "BufWritePre" },
+			opts = {
+				formatters_by_ft = {
+					lua = { "stylua" },
+					python = { "ruff_organize_imports", "ruff_format" },
+					json = { "jq" },
+				},
+				format_on_save = {
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+			},
 		},
 		-- fuzzy findings
 		{
