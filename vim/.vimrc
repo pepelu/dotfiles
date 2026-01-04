@@ -82,5 +82,11 @@ noremap <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <expr> k (v:count == 0 ? 'gk' : 'k')
 
 # Spell-check Markdown files and Git commit messages
-autocmd FileType markdown  setlocal spell
-autocmd FileType gitcommit setlocal spell
+augroup Spelling
+    autocmd!
+    # Set both spell and the specific languages for these filetypes
+    autocmd FileType markdown,gitcommit {
+        &l:spell = true
+        &l:spelllang = 'en,es'
+    }
+augroup END
